@@ -2,5 +2,32 @@
 <data>
 
 
+        <record id="partner_form_inherit" model="ir.ui.view">
+                <field name="name">partner.form.inherit</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+
+
+                    <xpath expr="//field[@name='vat']" position="after" >
+                             <field name="num_siren"/>
+                             <field name="activity"/>
+
+
+                    </xpath>
+                    <xpath expr="//page[@name='contact_addresses']" position="after" >
+                        <page string="Parc machines" name="parc_machine">
+                            <field name="parc_machine"/>
+                        </page>
+                    </xpath>
+                    <xpath expr="//page[@name='internal_notes']" position="after" >
+                        <page string="Budget partenariat" name="budget_partenariat">
+                         
+                        </page>
+                    </xpath>
+                </field>
+        </record>
+
+
 </data>
 </odoo>
