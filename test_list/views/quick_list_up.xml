@@ -21,14 +21,14 @@
 			<field name="model">productquicktemplate</field>
 			<field name="arch" type="xml">
 
-   <kanban class="o_kanban_mobile" oe_kanban_global_click>
+   <kanban class="o_kanban_mobile" >
                                      <field name="quick_product_id"/>
                                      <field name="quick_qte_product"/>
                                      <field name="quick_vendor_num"/>
                                      <field name="quick_price_purchase"/>
                                      <templates>
                                          <t t-name="kanban-box">
-                                             <div t-attf-class="oe_kanban_card">
+                                             <div t-attf-class="oe_kanban_card oe_kanban_global_click">
 
                                                      <div class="row">
                                                          <div class="col-8">
