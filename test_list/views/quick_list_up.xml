@@ -21,7 +21,7 @@
 			<field name="model">productquicktemplate</field>
 			<field name="arch" type="xml">
 
-   <kanban class="o_kanban_mobile">
+   <kanban class="o_kanban_mobile" oe_kanban_global_click>
                                      <field name="quick_product_id"/>
                                      <field name="quick_qte_product"/>
                                      <field name="quick_vendor_num"/>
