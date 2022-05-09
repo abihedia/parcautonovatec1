@@ -11,7 +11,7 @@ class PartnerModelHerit(models.Model):
     montant_tot_partenariat = fields.Float('Montant total du partenariat')
     montant_rest_regl = fields.Float('Montant restant à régler', compute='_compute_amount_partner')
     factures_partner = fields.One2many('account.move', 'partner_id')
-    code_client = fields.Char('code client', readonly=True )
+
 
 
     @api.depends('factures_partner.amount_residual_signed')
