@@ -13,11 +13,6 @@ class PartnerModelHerit(models.Model):
     factures_partner = fields.One2many('account.move', 'partner_id')
     code_client = fields.Char('code client', readonly=True )
 
-    @api.model
-    def create(self, vals):
-        record = super(PartnerModelHerit, self).create(vals)
-        record['code_client'] = self.env['ir.sequence'].next_by_code('code.client')
-        return record
 
     @api.depends('factures_partner.amount_residual_signed')
     def _compute_amount_partner(self):
