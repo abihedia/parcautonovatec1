@@ -52,8 +52,6 @@
 
                             </group>
                             <field name="factures_ids">
-                                    <tree>
-                                    </tree>
                                 </field>
 
                         </page>
