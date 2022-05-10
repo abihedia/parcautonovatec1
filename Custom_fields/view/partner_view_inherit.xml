@@ -52,6 +52,10 @@
 
                             </group>
                             <field name="factures_ids">
+                                    <tree>
+                                        <field name="amount_total_signed"></field>
+                                        <field name="payment_state"></field>
+                                    </tree>
                                 </field>
 
                         </page>

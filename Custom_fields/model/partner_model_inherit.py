@@ -7,7 +7,7 @@ class PartnerModelHerit(models.Model):
     type_contact = fields.Selection([('Prospect', 'Prospect'), ('Client', 'Client')])
     parc_machine = fields.One2many('fleet.vehicle', 'partner_id')
     num_siren = fields.Char('N° SIREN')
-    activity = fields.Char('Activité')
+    activity = fields.Many2one('partner.activity', string='Activité')
     origine = fields.Many2one('partner.origin', string='Origine')
     montant_tot_partenariat = fields.Float('Montant total du partenariat')
     montant_rest_regl = fields.Float('Montant restant à régler', compute='_compute_amount_partner')
@@ -44,7 +44,11 @@ class OriginPartner(models.Model):
     name = fields.Char('Nom')
 
 
+class OriginPartner(models.Model):
+    _name = 'partner.activity'
+    _description ='Activity'
 
+    name = fields.Char('Nom')
 
 
 
