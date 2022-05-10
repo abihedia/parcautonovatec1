@@ -43,13 +43,19 @@
                     <xpath expr="//page[@name='internal_notes']" position="after" >
                         <page string="Budget partenariat" name="budget_partenariat">
                             <group>
-                            <group>
+                            <group string="Conditions et montant">
                                 <field name="montant_tot_partenariat"/>
                                 <field name="montant_rest_regl"/>
                             </group>
-
-                            <field name="factures_partner"/>
                             </group>
+                            <group  string="Suivie de partenariat">
+
+                            </group>
+                            <field name="factures_ids">
+                                    <tree>
+                                    </tree>
+                                </field>
+
                         </page>
                     </xpath>
                 </field>
