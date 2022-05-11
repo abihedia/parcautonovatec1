@@ -171,21 +171,22 @@
                             <div class="oe_kanban_details">
                                 <ul>
                                     <li>
-                                <strong class="o_kanban_record_title">
-                                     <t t-if="record.fleet_serie.raw_value">Dossier N°: <field name="fleet_dossier_devis"/></t>
-                                </strong>
+                                        <strong class="o_kanban_record_title">
+                                             <t t-if="record.fleet_serie.raw_value">Dossier N°: <field name="fleet_dossier_devis"/></t>
+                                        </strong>
                                     </li>
                                 </ul>
-
-                                <strong class="o_kanban_record_title">
-                                     <t t-if="record.fleet_serie.raw_value"><field name="fleet_serie"/>:</t>
-                                     <t t-if="record.fleet_marque.raw_value"><field name="fleet_marque"/>/</t><field name="fleet_Modele"/>
-                                </strong>
 
                                 <ul>
                                     <li>
                                         <t t-if="record.partner_id.raw_value">Client : <field name="partner_id"/></t>
                                     </li>
+
+                                    <li>
+                                        <t t-if="record.fleet_serie.raw_value"><field name="fleet_serie" invisible="1"/></t>
+                                        <t t-if="record.fleet_marque.raw_value"><field name="fleet_marque"/>&#x2063;(<field name="fleet_Modele"/>)</t>
+                                    </li>
+
                                     <li>
                                         <t t-if="record.fleet_expiration_date.raw_value">Date de fin de contrat : <field name="fleet_expiration_date"/></t>
                                     </li>
