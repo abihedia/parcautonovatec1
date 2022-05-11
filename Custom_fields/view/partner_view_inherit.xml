@@ -26,7 +26,8 @@
                 <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
               <xpath expr="//field[@name='type_contact']" position="after">
-                            <br/> <field name="code_client"/>
+                             <br/>   <h4><label for="code_client"/>
+                            <field name="code_client"/></h4>
                     </xpath>
                     <xpath expr="//field[@name='vat']" position="after" >
                              <field name="num_siren"/>
