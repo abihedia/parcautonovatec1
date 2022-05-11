@@ -4,12 +4,7 @@
         <field name="name">sale.order.form.inherit1</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="arch" type="xml">
-
-            <xpath expr="//field[@name='name']" position="before">
-                <h1>Dossier N°</h1>
-            </xpath>
-
+        <field name="arch" type="xml">          
 
             <xpath expr="//form/sheet/group[1]" position="after">
                      <group name="sale_header_1">
