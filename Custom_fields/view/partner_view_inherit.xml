@@ -25,9 +25,10 @@
                 <field name="model">res.partner</field>
                 <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
-              <xpath expr="//field[@name='type_contact']" position="after">
-                             <br/>   <h4><label for="code_client"/>
+               <xpath expr="//field[@name='type_contact']" position="after">
+                 <br/>   <h4><label for="code_client"/>
                             <field name="code_client"/></h4>
+
                     </xpath>
                     <xpath expr="//field[@name='vat']" position="after" >
                              <field name="num_siren"/>
@@ -52,8 +53,13 @@
                             <group  string="Suivie de partenariat">
 
                             </group>
-                            <field name="factures_ids">
-                              
+                            <field name="partenariat_ids">
+                                    <tree string="suivie partenariat"  editable="bottom">
+                                        <field name="annee"  options="{'format': 'YYYY'}"/>
+                                        <field name="montant_a_regler" widget="monetary" options="{'currency_field': 'currency_id'}"></field>
+                                        <field name="statut"></field>
+                                        <field name="date_reglement"></field>
+                                    </tree>
                                 </field>
 
                         </page>

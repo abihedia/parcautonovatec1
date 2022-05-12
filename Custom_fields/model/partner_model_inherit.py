@@ -1,5 +1,8 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError,Warning
+
 from datetime import datetime
+
 
 class PartnerModelHerit(models.Model):
     _inherit = 'res.partner'
@@ -13,14 +16,37 @@ class PartnerModelHerit(models.Model):
     montant_rest_regl = fields.Float('Montant restant à régler', compute='_compute_amount_partner')
     factures_partner = fields.One2many('account.move', 'partner_id')
     code_client = fields.Char('Numéro client', readonly=True)
-    factures_ids = fields.One2many('account.move', compute="compute_state_facture")
+    partenariat_ids = fields.One2many('budget.partenariat','partner_id')
 
-    @api.depends('factures_partner')
-    def compute_state_facture(self):
+    @api.onchange('partenariat_ids')
+    def addline(self):
+        if len(self.partenariat_ids) > 5:
+            raise  ValidationError('Vous avez dépassé la limite de 5 lignes')
+
+    @api.onchange('name')
+    def addpartenariat(self):
         for rec in self:
-            rec.factures_ids =  self.self.env['account.move'].search([('move_type', '=', 'out_invoice'),('partner_id', '=', rec.id)])
-
-
+            if rec.name :
+                vals = {'partner_id': self.id,
+                        'annee': "2022",
+                        }
+                self.env['budget.partenariat'].create(vals)
+                vals = {'partner_id': self.id,
+                        'annee': "2023",
+                        }
+                self.env['budget.partenariat'].create(vals)
+                vals = {'partner_id': self.id,
+                        'annee': "2024",
+                        }
+                self.env['budget.partenariat'].create(vals)
+                vals = {'partner_id': self.id,
+                        'annee': "2025",
+                        }
+                self.env['budget.partenariat'].create(vals)
+                vals = {'partner_id': self.id,
+                        'annee': "2026",
+                        }
+                self.env['budget.partenariat'].create(vals)
 
 
     @api.model
@@ -29,12 +55,12 @@ class PartnerModelHerit(models.Model):
         record['code_client'] = self.env['ir.sequence'].next_by_code('code.client')
         return record
 
-    @api.depends('factures_ids.amount_total_signed')
+    @api.depends('partenariat_ids.montant_a_regler')
     def _compute_amount_partner(self):
         amount = 0.0
         for par in self:
-            for rec in par.factures_ids:
-                amount += rec.amount_total_signed
+            for rec in par.partenariat_ids:
+                amount += rec.montant_a_regler
             par.montant_rest_regl = par.montant_tot_partenariat - amount
 
 class OriginPartner(models.Model):
@@ -50,5 +76,14 @@ class OriginPartner(models.Model):
 
     name = fields.Char('Nom')
 
+class BudgetPartenariat(models.Model):
+    _name = 'budget.partenariat'
+    _description ='Partenariat'
 
+
+    annee = fields.Char(string='Annee')
+    statut = fields.Selection([('A régler', 'A régler'), ('Réglé', 'Réglé'), ('En attente de facture', 'En attente de facture')])
+    montant_a_regler = fields.Float('Montant a regler')
+    partner_id = fields.Many2one('res.partner', string='partner')
+    date_reglement = fields.Date(string='Date de réglement')
 
