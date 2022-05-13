@@ -12,6 +12,7 @@
     'website': 'https://www.odoo.com/app/crm',
     'depends': [
         'base_setup',
+        'sale_management',
         'uom',
         'base',
         'crm',
