@@ -53,13 +53,13 @@
                                      <field name="montant_rest_regl"  widget="monetary"/>
                                 </group>
                             </group>
-                            <group  string="Suivie de partenariat">
+                            <group  string="Suivi des partenariats">
 
                             </group>
                             <field name="partenariat_ids">
                                     <tree string="suivie partenariat"  editable="bottom">
                                         <field name="annee"  options="{'format': 'YYYY'}"/>
-                                        <field name="montant_a_regler" widget="monetary" options="{'currency_field': 'currency_id'}"></field>
+                                        <field name="montant_a_regler" widget="monetary" options="{'currency_field': 'currency_id'}" style="text-align:center !important;"></field>
                                         <field name="statut"></field>
                                         <field name="date_reglement"></field>
                                     </tree>
