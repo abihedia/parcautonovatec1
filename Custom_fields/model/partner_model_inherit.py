@@ -31,7 +31,7 @@ class PartnerModelHerit(models.Model):
 
 
 
-       @api.depends('partenariat_ids.montant_a_regler')
+    @api.depends('partenariat_ids.montant_a_regler')
     def _compute_amount_partner(self):
         amount = 0.0
         for par in self:
