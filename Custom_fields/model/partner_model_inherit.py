@@ -31,12 +31,13 @@ class PartnerModelHerit(models.Model):
 
 
 
-    @api.depends('partenariat_ids.montant_a_regler')
+       @api.depends('partenariat_ids.montant_a_regler')
     def _compute_amount_partner(self):
         amount = 0.0
         for par in self:
             for rec in par.partenariat_ids:
-                amount += rec.montant_a_regler
+                if rec.statut == "Réglé" :
+                    amount += rec.montant_a_regler
             par.montant_rest_regl = par.montant_tot_partenariat - amount
 
 class OriginPartner(models.Model):
