@@ -12,7 +12,6 @@
     'website': "www.company.com",
     "depends": ['base', 'web', 'mail'],
     "data": [
-        'views/icons.xml',
         'views/layout.xml',
     ],
     'assets': {
