@@ -21,4 +21,3 @@ def test_post_init_hook(cr, registry):
 
     env = api.Environment(cr, SUPERUSER_ID, {})
     menu_item = env['ir.ui.menu'].search([('parent_id', '=', False)])
-
