@@ -30,14 +30,13 @@ class PartnerModelHerit(models.Model):
         return record
     
 
-    @api.depends('partenariat_ids.montant_a_regler')
-    def _compute_amount_partner(self):
-        amount = 0.0
-        for par in self:
-            for rec in par.partenariat_ids:
-                if rec.statut == "Réglé" :
-                    amount += rec.montant_a_regler
-            par.montant_rest_regl = par.montant_tot_partenariat - amount
+   @api.depends('sale_order_ids.sale_partenariat')
+    def compute_montant_partenariat(self):
+        part_amount = 0.0
+        for rec in self:
+            for par in self.sale_order_ids:
+                part_amount += par.sale_partenariat
+            rec.montant_tot_partenariat = part_amount
             
 
     @api.depends('partenariat_ids.montant_a_regler')
