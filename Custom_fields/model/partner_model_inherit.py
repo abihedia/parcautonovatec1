@@ -12,7 +12,7 @@ class PartnerModelHerit(models.Model):
     num_siren = fields.Char('N° SIREN')
     activity = fields.Many2one('partner.activity', string='Activité')
     origine = fields.Many2one('partner.origin', string='Origine')
-    montant_tot_partenariat = fields.Monetary('Montant total du partenariat')
+    montant_tot_partenariat = fields.Monetary('Montant total du partenariat', compute='compute_montant_partenariat')
     montant_rest_regl = fields.Monetary('Montant restant à régler', compute='_compute_amount_partner')
     code_client = fields.Char('Numéro client', readonly=True)
     partenariat_ids = fields.One2many('budget.partenariat','partner_id')
@@ -28,8 +28,17 @@ class PartnerModelHerit(models.Model):
         record = super(PartnerModelHerit, self).create(vals)
         record['code_client'] = self.env['ir.sequence'].next_by_code('code.client')
         return record
+    
 
-
+    @api.depends('partenariat_ids.montant_a_regler')
+    def _compute_amount_partner(self):
+        amount = 0.0
+        for par in self:
+            for rec in par.partenariat_ids:
+                if rec.statut == "Réglé" :
+                    amount += rec.montant_a_regler
+            par.montant_rest_regl = par.montant_tot_partenariat - amount
+            
 
     @api.depends('partenariat_ids.montant_a_regler')
     def _compute_amount_partner(self):
