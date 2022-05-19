@@ -29,14 +29,15 @@ class PartnerModelHerit(models.Model):
         record['code_client'] = self.env['ir.sequence'].next_by_code('code.client')
         return record
     
-
-   @api.depends('sale_order_ids.sale_partenariat')
+    
+    @api.depends('sale_order_ids.sale_partenariat')
     def compute_montant_partenariat(self):
         part_amount = 0.0
         for rec in self:
             for par in self.sale_order_ids:
                 part_amount += par.sale_partenariat
             rec.montant_tot_partenariat = part_amount
+
             
 
     @api.depends('partenariat_ids.montant_a_regler')
