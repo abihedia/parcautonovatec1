@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 class SaleOrderLineHerit(models.Model):
     _inherit    = 'sale.order.line'
-    price_sale = fields.Monetary(string="Prix d'achat")
+    price_sale = fields.Monetary(string="Prix d'achat", compute="compute_pricesale")
     designation = fields.Char(compute="compute_designation",string="Désignation")
 
     @api.depends('name')
@@ -16,6 +16,10 @@ class SaleOrderLineHerit(models.Model):
                 rec.designation = " ".join(chaine[1:])
             else:
                 rec.designation = False
+    @api.depends('product_id')
+    def compute_pricesale(self):
+        for rec in self:
+            rec.price_sale = rec.product_id.standard_price
 
 class SaleOrderHerit(models.Model):
     _inherit    = 'sale.order'
