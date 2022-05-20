@@ -23,7 +23,8 @@
 
             <xpath expr="//form/sheet/div[2]" position="after">
                       <div class="oe_title">
-                       <label for="fleet_dossier_devis"/>
+
+                        <label for="fleet_dossier_devis"/>
                         <h1>
                             <field name="fleet_dossier_devis" placeholder="S256"/>
                         </h1>
@@ -150,11 +151,11 @@
             <xpath expr="//form/sheet/group[1]/group[1]" position="attributes">
                 <attribute name="invisible">True</attribute>
             </xpath>
-
+            <!--
             <xpath expr="//form/sheet/group[2]" position="attributes">
                 <attribute name="invisible">True</attribute>
             </xpath>
-
+            -->
 
             <xpath expr="//form/sheet/notebook[1]" position="attributes">
                 <attribute name="invisible">True</attribute>
@@ -176,12 +177,19 @@
                                 <ul>
                                     <li>
                                         <strong class="o_kanban_record_title">
+                                            <!--
                                              <t t-if="record.fleet_serie.raw_value"><field name="fleet_dossier_devis"/></t>
+                                             -->
+                                            <t t-if="record.fleet_dossier_devis.raw_value">Dossier N°: <field name="fleet_dossier_devis"/></t>
+
                                         </strong>
                                     </li>
                                 </ul>
 
                                 <ul>
+                                    <li>
+                                        <t t-if="record.fleet_serie.raw_value">N° serie: <field name="fleet_serie"/></t>
+                                    </li>
                                     <li>
                                         <t t-if="record.partner_id.raw_value">Client : <field name="partner_id"/></t>
                                     </li>
