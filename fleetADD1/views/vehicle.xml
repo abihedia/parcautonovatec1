@@ -23,7 +23,7 @@
 
             <xpath expr="//form/sheet/div[2]" position="after">
                       <div class="oe_title">
-
+                       <label for="fleet_dossier_devis"/>
                         <h1>
                             <field name="fleet_dossier_devis" placeholder="S256"/>
                         </h1>
