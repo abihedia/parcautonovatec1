@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 class fleetNameGET(models.Model):
     _inherit = 'fleet.vehicle.model'
     type_materiels = fields.Selection([('print', 'Print'), ('sauvegarde', 'Sauvegarde'), ('solution', 'Solution'), ('ecran', 'Ecran')],string='Type de matériel')
-    model_format = fields.Selection([('fromat1', 'Format 1'), ('fromat2', 'Format 2')], string='Format')
+    model_format = fields.Selection([('a3', 'A3'), ('a2', 'A4')], string='Format')
     model_attachment_ids = fields.Many2many(comodel_name='ir.attachment', string='Pièces jointes')
 
     def name_get(self):
@@ -131,14 +131,27 @@ class FleetContINHERIT(models.Model):
     #  infos MATÉRIELS #
     ####################
     partner_id = fields.Many2one('res.partner', ondelete='Set null', string='Client', index=True)
-    fleet_serie = fields.Char(string="N° serie", required=True)
+    fleet_serie = fields.Char(string="N° serie")
     fleet_fournisseur = fields.Many2one('res.partner', ondelete='Set null',string="Fournisseur",index=True)
     fleet_marque = fields.Many2one( "fleet.vehicle.model.brand",string='Marque',related="fleet_Modele.brand_id")
     fleet_Modele = fields.Many2one( "fleet.vehicle.model",string='Modèle')
     fleet_equipement = fields.Char(string="Équipement")
-    fleet_type_1 = fields.Many2one( "typeinfo",string='Type')
+    fleet_type_1 = fields.Char(string='Type', compute="fleet_type_compute")
     fleet_installation = fields.Char(string="Lieu d'installation")
     fleet_commentaires = fields.Text(string="Commentaires")
+    @api.onchange('fleet_Modele')
+    def fleet_type_compute(self):
+        for rec in self:
+            if rec.fleet_Modele.category_id:
+                if rec.fleet_Modele.model_format == 'a3':
+                    rec.fleet_type_1 = str(rec.fleet_Modele.category_id.name) + ' ' + 'A3'
+                elif rec.fleet_Modele.model_format == 'a4':
+                    rec.fleet_type_1 = str(rec.fleet_Modele.category_id.name) + ' ' + 'A4'
+                else:
+                    rec.fleet_type_1 = str(rec.fleet_Modele.category_id.name)
+            else:
+                rec.fleet_type_1 = False
+
 
     ######################
     #  infos MAINTENANCE #
@@ -235,10 +248,6 @@ class FleetContINHERIT(models.Model):
             'res_id': self.fleet_devis_id.id,
             'type': 'ir.actions.act_window',
         }
-
-
-
-
 
 
 
