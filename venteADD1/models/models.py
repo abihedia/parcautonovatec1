@@ -22,7 +22,7 @@ class SaleOrderLineHerit(models.Model):
     @api.depends('product_id')
     def compute_pricesale(self):
         for rec in self:
-            rec.price_sale = rec.product_id.standard_price
+            rec.price_sale = rec.product_id.standard_price*rec.product_uom_qty
 
 
 
