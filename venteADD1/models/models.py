@@ -3,6 +3,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 
 
+
 class SaleOrderLineHerit(models.Model):
     _inherit    = 'sale.order.line'
     price_sale = fields.Monetary(string="Prix d'achat", compute="compute_pricesale")
@@ -16,19 +17,27 @@ class SaleOrderLineHerit(models.Model):
                 rec.designation = " ".join(chaine[1:])
             else:
                 rec.designation = False
+
+    ####### add new
     @api.depends('product_id')
     def compute_pricesale(self):
         for rec in self:
             rec.price_sale = rec.product_id.standard_price
 
+
+
+
+
+
 class SaleOrderHerit(models.Model):
     _inherit    = 'sale.order'
     sale_total_vente = fields.Monetary(string="Total vente",default=0.0,compute="sale_total_vente_func")
     sale_marge  = fields.Monetary(compute="sale_marge_fuc",default=0.0, string="Marge commerciale")
+    sale_total_achat = fields.Monetary(string="Total vente", default=0.0, compute="sale_total_achat_func")
     sale_marge_reel = fields.Monetary(default=0.0, string="Marge réelle", compute="sale_marge_reel_fuc",)
     sale_date_traitement = fields.Date("Date de traitement",compute="sale_total_date_traitement")
 
-    ############ zip street city client 1
+    ############ zip street city
     street_client = fields.Char(compute="compute_street_client")
     zip_client = fields.Char(compute="compute_zip_client")
     city_client = fields.Char(compute="compute_city_client")
@@ -221,6 +230,12 @@ class SaleOrderHerit(models.Model):
         for rec in self:
             rec.sale_marge = rec.sale_finance + rec.sale_frais -rec.sale_total_vente- rec.sale_frais_restitution -rec.sale_vr_client-rec.sale_ir_prospects-rec.sale_vr_client_2-rec.sale_rachat_matriel-rec.sale_Gratuite-rec.sale_partenariat-rec.sale_solde_2_fois
 
+    @api.onchange("sale_total_achat", "sale_finance", "sale_frais", "sale_frais_restitution", "sale_vr_client",
+                  "sale_ir_prospects", "sale_vr_client_2", "sale_rachat_matriel", "sale_Gratuite", "sale_partenariat",
+                  "sale_solde_2_fois")
+    def sale_marge_reel_fuc(self):
+        for rec in self:
+            rec.sale_marge_reel = rec.sale_finance + rec.sale_frais - rec.sale_total_achat - rec.sale_frais_restitution - rec.sale_vr_client - rec.sale_ir_prospects - rec.sale_vr_client_2 - rec.sale_rachat_matriel - rec.sale_Gratuite - rec.sale_partenariat - rec.sale_solde_2_fois
 
     @api.depends("order_line")
     def sale_total_vente_func(self):
@@ -233,14 +248,14 @@ class SaleOrderHerit(models.Model):
             rec.sale_total_vente = price_total
 
     @api.depends("order_line")
-    def sale_marge_reel_fuc(self):
+    def sale_total_achat_func(self):
         for rec in self:
             marge_reel = 0
             if rec.order_line:
                 for record in rec.order_line:
                     if record.price_sale:
                         marge_reel += record.price_sale
-            rec.sale_marge_reel = marge_reel
+            rec.sale_total_achat = marge_reel
 
 
 
