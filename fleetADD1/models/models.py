@@ -110,6 +110,7 @@ class FleetContINHERIT(models.Model):
             else:
                 rec.fleet_duree_rest = 0
 
+    @api.onchange('fleet_date_inst', 'fleet_duree', 'fleet_periodicite')
     @api.depends('fleet_date_inst','fleet_duree','fleet_periodicite')
     def fleet_date_fin(self):
         for rec in self:
