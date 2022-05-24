@@ -17,7 +17,6 @@
                 </field>
         </record>
 
-
     <!-- view Kanban -->
 		<record model="ir.ui.view" id="helpdesk_kanban">
 			<field name="name">helpdesk_view_inherit.kanban</field>
