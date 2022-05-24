@@ -14,6 +14,7 @@
         'base_setup',
         'uom',
         'base',
+        'helpdesk',
     ],
     'data': [
         'view/hepdesk_inherit_view.xml',
@@ -23,7 +24,7 @@
     ],
     'css': ['static/src/css/crm.css'],
     'installable': True,
-    'application': True,
+    'application': False,
     'auto_install': False,
     'assets': {
         'web.assets_qweb': [
