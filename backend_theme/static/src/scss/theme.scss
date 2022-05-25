@@ -123,7 +123,7 @@ a.btn {
 }
 
 .test th.o_monetary_cell.o_column_sortable.o_list_number_th {
-    display: flex;
-    justify-content: center;
+    display: block;
+    text-align:center !important;
 }
 
