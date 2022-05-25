@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+      <record id="sale_order_form_inherit2" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+
+              <button name="action_add_serial_number" type="object" icon="fa-plus-square" width="0.1" role="img" title="Sélectionner les numéros de série" />
+
+            </xpath>
+          </field>
+        </record>
+</data>
+</odoo>
