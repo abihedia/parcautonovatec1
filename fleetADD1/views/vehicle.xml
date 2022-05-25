@@ -107,10 +107,11 @@
                          <field name="fleet_solde_Montant" />
                     </group>
              </xpath>
-
+            <!--
             <xpath expr="//form/sheet/group[1]/group[2]" position="attributes">
                 <attribute name="invisible">True</attribute>
             </xpath>
+            -->
 
 
             <xpath expr="//form/sheet/group[1]/group[1]" position="after">
