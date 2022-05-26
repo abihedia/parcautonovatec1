@@ -11,3 +11,5 @@ class HelpdeskModelHerit(models.Model):
 
     def product_ids_function(self):
         self.products_id = self.env['fleet.vehicle'].search([('partner_id', '=', self.partner_id.id)])
+        for rec in partner_fleet:
+            self.products_id = rec.fleet_artic_id
