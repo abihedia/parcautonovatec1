@@ -14,7 +14,7 @@ class HelpdeskModelHerit(models.Model):
     def onchange_partner_id(self):
         partner_fleet = self.env['fleet.vehicle'].search([('partner_id', '=', self.partner_id.id)])
         for rec in partner_fleet:
-            return {'domain': {'article_id' : [(rec.partner_id, '=', self.partner_id.id)]}}
+            return {'domain': {'products_id' : [(rec.partner_id, '=', partner_id)]}}
 
             
                 
