@@ -132,6 +132,11 @@ a.btn {
     text-align: center;
 }
 
-.client-color {
-    background-color: #5E8EBA;
-}
+
+span.o_field_selection_badge.o_field_widget.o_quick_editable.client-color {background: #5E8EBA;}
+
+span.o_selection_badge {background: white;}
+
+span.o_selection_badge.active {background: #white;}
+
+.o_field_widget.o_field_selection_badge .o_selection_badge {margin: 0px;}
