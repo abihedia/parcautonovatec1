@@ -32,7 +32,7 @@
                         <xpath expr="//field[@name='type_contact']" position="after">
                                <br/>   <h4>
                             <field name="num_cont" attrs="{'invisible': 1}" /></h4>
-                      
+                      </xpath>
                      <xpath expr="//field[@name='num_cont']" position="after">
                                <br/>   <h4><label for="code_client"/>
                             <field name="code_client"/></h4>
