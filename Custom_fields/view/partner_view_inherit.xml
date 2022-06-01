@@ -33,7 +33,7 @@
                                <br/>   <h4>
                             <field name="num_cont" attrs="{'invisible': 1}" /></h4>
                       </xpath>
-                     <xpath expr="//@span="address_name"]" position="before">
+                     <xpath expr="//span[@name='address_name']" position="before">
                                <br/>   <h4><label for="code_client"/>
                             <field name="code_client"/></h4>
 
