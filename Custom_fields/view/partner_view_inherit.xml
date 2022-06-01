@@ -26,13 +26,10 @@
                 <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
                      <xpath expr="//field[@name='name']" position="after">   
-                         <span name=""> <span> - </span> <field name="type_contact" style="background-color: cyan;" attrs="{'invisible': [('type_contact','=','Prospect')]}" class="oe_inline"/>
-                                          <field name="type_contact" attrs="{'invisible': [('type_contact','=','Client')]}" class="oe_inline"/></span>
+                          <span> - </span> <field name="type_contact" style="background-color: cyan;" attrs="{'invisible': [('type_contact','=','Prospect')]}"/>
+                                          <field name="type_contact" attrs="{'invisible': [('type_contact','=','Client')]}"/>
                       </xpath>
-                        <xpath expr="//field[@name='type_contact']" position="after">
-                               <br/>   <h4>
-                            <field name="num_cont" attrs="{'invisible': 1}" /></h4>
-                      </xpath>
+                   
                      <xpath expr="//sheet/div[2]/div[1]" position="after">
                                <br/>   <h4><label for="code_client"/>
                             <field name="code_client"/></h4>
