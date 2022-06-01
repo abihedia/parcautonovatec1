@@ -9,6 +9,7 @@ class PartnerModelHerit(models.Model):
 
     type_contact = fields.Selection([('Prospect', 'Prospect'), ('Client', 'Client')])
     parc_machine = fields.One2many('fleet.vehicle', 'partner_id')
+    cont_type = fields.Char('type')
     num_siren = fields.Char('N° SIREN')
     activity = fields.Many2one('partner.activity', string='Activité')
     origine = fields.Many2one('partner.origin', string='Origine')
