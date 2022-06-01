@@ -27,13 +27,13 @@
                 <field name="arch" type="xml">
                      <xpath expr="//field[@name='name']" position="after">   
                          <span> - </span> <field name="type_contact" style="background-color: cyan;" attrs="{'invisible': [('type_contact','=','Prospect')]}"/>
-                                          <field name="type_contact" attrs="{'invisible': [('type_contact','=','Client')]}"/>
+                                          <field name="type_contact" attrs="{'invisible': [('type_contact','=','Client')]}" class="oe_inline"/>
                       </xpath>
                         <xpath expr="//field[@name='type_contact']" position="after">
                                <br/>   <h4>
                             <field name="num_cont" attrs="{'invisible': 1}" /></h4>
                       </xpath>
-                     <xpath expr="//span[@name='address_name']" position="before">
+                     <xpath expr="//field[@name='num_cont']" position="before">
                                <br/>   <h4><label for="code_client"/>
                             <field name="code_client"/></h4>
 
