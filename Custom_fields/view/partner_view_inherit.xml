@@ -27,7 +27,7 @@
                 <field name="arch" type="xml">
                      <xpath expr="//field[@name='name']" position="after">   
                          <span> - </span> <field name="type_contact" style="background-color: cyan;" attrs="{'invisible': [('type_contact','=','Prospect')]}"/>
-                                          <field name="type_contact"/>
+                                          <field name="type_contact" attrs="{'invisible': [('type_contact','=','Client')]}"/>
                       </xpath>
                      <xpath expr="//field[@name='type_contact']" position="after">
                                <br/>   <h4><label for="code_client"/>
