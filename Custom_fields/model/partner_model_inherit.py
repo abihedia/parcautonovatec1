@@ -10,7 +10,6 @@ class PartnerModelHerit(models.Model):
     type_contact = fields.Selection([('Prospect', 'Prospect'), ('Client', 'Client')])
     parc_machine = fields.One2many('fleet.vehicle', 'partner_id')
     num_siren = fields.Char('N° SIREN')
-    contact_type = fields.Char('type')
     activity = fields.Many2one('partner.activity', string='Activité')
     origine = fields.Many2one('partner.origin', string='Origine')
     montant_tot_partenariat = fields.Monetary('Montant total du partenariat', compute='compute_montant_partenariat')
