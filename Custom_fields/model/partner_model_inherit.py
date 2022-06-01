@@ -7,6 +7,7 @@ from datetime import datetime
 class PartnerModelHerit(models.Model):
     _inherit = 'res.partner'
 
+    text_inter = fields.Char('type')
     type_contact = fields.Selection([('Prospect', 'Prospect'), ('Client', 'Client')])
     parc_machine = fields.One2many('fleet.vehicle', 'partner_id')
     num_siren = fields.Char('N° SIREN')
