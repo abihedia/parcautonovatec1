@@ -74,34 +74,7 @@ class SaleOrderHerit(models.Model):
             else:
                 rec.city_client = False
 
-    street_fact = fields.Char(compute="compute_street_fact")
-    zip_fact = fields.Char(compute="compute_zip_fact")
-    city_fact = fields.Char(compute="compute_city_fact")
-
-    @api.onchange("partner_invoice_id")
-    def compute_street_fact(self):
-        for rec in self:
-            if rec.partner_invoice_id:
-                rec.street_fact = rec.partner_invoice_id.street
-            else:
-                rec.street_fact = False
-
-    @api.onchange("partner_invoice_id")
-    def compute_zip_fact(self):
-        for rec in self:
-            if rec.partner_invoice_id:
-                rec.zip_fact = rec.partner_invoice_id.zip
-            else:
-                rec.zip_fact = False
-
-    @api.onchange("partner_invoice_id")
-    def compute_city_fact(self):
-        for rec in self:
-            if rec.partner_invoice_id:
-                rec.city_fact = rec.partner_invoice_id.city
-            else:
-                rec.city_fact = False
-
+    
     street_livraison = fields.Char(compute="compute_street_livraison")
     zip_livraison = fields.Char(compute="compute_zip_livraison")
     city_livraison = fields.Char(compute="compute_city_livraison")
