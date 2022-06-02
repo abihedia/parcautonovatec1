@@ -10,13 +10,4 @@ class HelpdeskModelHerit(models.Model):
     def compute_product_list(self):       
             return [('id','in',[a['fleet_artic_id'][0] for a in self.env['fleet.vehicle'].search_read([('partner_id', '=', self.partner_id.id)],['fleet_artic_id'])])]
 
-    
-   
-    
-    
-    
-    
-
-            
-                
-            
+  
