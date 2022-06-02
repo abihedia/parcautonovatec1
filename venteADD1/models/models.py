@@ -38,6 +38,7 @@ class SaleOrderHerit(models.Model):
     sale_date_traitement = fields.Date("Date de traitement",compute="sale_total_date_traitement")
 
     ############ zip street city
+    sale_type_client = fields.Selection([('Nouveau_client', 'Nouveau client'), ('conversion', 'Conversion'),('additionnel', 'Additionnel')], string='Type de vente', default='Nouveau_client')
     street_client = fields.Char(compute="compute_street_client")
     zip_client = fields.Char(compute="compute_zip_client")
     city_client = fields.Char(compute="compute_city_client")
