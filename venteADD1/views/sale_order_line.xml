@@ -37,12 +37,14 @@
                         </group>
                         <group name="order_details_1">
                             <field name="sale_date_traitement" />
+                            <!--    
                             <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options="{&quot;always_reload&quot;: True}"/>
                             <label for="street_client" string="adress" style="color:white;"/>
                             <div>
                                 <field name="street_fact" nolabel="1" /><br/>
                                 <field name="zip_fact" nolabel="1"  />&#x2063;&#x2063; <field name="city_fact" class="oe_inline"  nolabel="1"/>
                             </div>
+                            -->
                             <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" options="{&quot;always_reload&quot;: True}"/>
                            <label for="street_livraison" string="adress" style="color:white;"/>
                             <div>
