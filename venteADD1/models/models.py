@@ -133,6 +133,7 @@ class SaleOrderHerit(models.Model):
     sale_vr_client      = fields.Monetary(string="Montant du rachat")
     sale_ir_prospects   = fields.Monetary(string="Montant du rachat")
     sale_rachat_matriel = fields.Monetary(string="Montant sponsoring")
+    sale_montatnt_IR = fields.Monetary(string="Montant des IR")
     sale_date_rachat_prevue = fields.Date("Date de rachat prévue")
     sale_marque_reference = fields.Char(string="Matériels rachetés")
     #groupe 2
